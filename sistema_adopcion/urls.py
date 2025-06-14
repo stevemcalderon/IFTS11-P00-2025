@@ -30,10 +30,10 @@ urlpatterns = [
 
 from django.contrib import admin
 from django.urls import path, include
-from adopcion.views import bienvenida  # 👈 importamos la vista de bienvenida
+from adopcion.views import bienvenida  # 👈
 
 urlpatterns = [
-    path('', bienvenida),  # 👈 esta es la ruta para "/"
+    path('', bienvenida),  # 👈
     path('admin/', admin.site.urls),
-    path('', include('adopcion.urls')),  # no te olvides de incluir las demás rutas
+    path('', include('adopcion.urls')),
 ]
