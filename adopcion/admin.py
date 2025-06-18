@@ -8,6 +8,6 @@ from .models import Perro, UsuarioAdoptante
 admin.site.register(Perro)
 admin.site.register(UsuarioAdoptante)
 
-from .models import Perro, UsuarioAdoptante, PostulacionAdopcion  # asegurate de importar
+from .models import Perro, UsuarioAdoptante, PostulacionAdopcion 
 
 admin.site.register(PostulacionAdopcion)

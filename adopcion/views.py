@@ -81,3 +81,5 @@ def historial_adopciones(request, dni):
 
 def bienvenida(request):
     return HttpResponse("🐾 Bienvenido al Sistema de Adopción de Perros 🐶")
+
+from .logica import GestorAdopciones
