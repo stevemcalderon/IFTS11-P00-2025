@@ -72,7 +72,7 @@ def postular_adopcion(request):
 from django.shortcuts import get_object_or_404
 from .models import UsuarioAdoptante
 
-# Vista: Ver historial de adopciones por DNI
+
 def historial_adopciones(request, dni):
     usuario = get_object_or_404(UsuarioAdoptante, dni=dni)
     data = [f"{p.nombre} ({p.raza}) - {p.estado}" for p in usuario.historial_adopciones.all()]
@@ -83,3 +83,24 @@ def bienvenida(request):
     return HttpResponse("🐾 Bienvenido al Sistema de Adopción de Perros 🐶")
 
 from .logica import GestorAdopciones
+
+
+from django.http import HttpResponse
+from .logica import GestorAdopciones  
+from .models import Perro, UsuarioAdoptante
+
+def probar_gestor(request):
+    
+    perro1 = Perro.objects.create(nombre="Goku", estado="disponible", raza="Labrador", edad=3, peso=45)
+    perro2 = Perro.objects.create(nombre="Terrabusi", estado="disponible", raza="Beagle", edad=2,peso=65)
+
+    usuario = UsuarioAdoptante.objects.create(nombre="Pichichu", dni="12345678", email="test@mail.com")
+    usuario.preferencias = "Beagle"
+    usuario.save()
+
+    usuario.historial_adopciones.add(perro2)
+    perro2.estado = "adoptado"
+    perro2.save()
+
+    historial = [p.nombre for p in usuario.historial_adopciones.all()]
+    return HttpResponse(f"Historial real en BD: {historial}")

@@ -11,9 +11,9 @@ class Perro(models.Model):
     raza = models.CharField(max_length=50)
     edad = models.IntegerField()
     tamaño = models.CharField(max_length=30)
-    peso = models.FloatField()
+    peso = models.FloatField(null=True, blank=True)
     estado_salud = models.TextField()
-    vacunado = models.BooleanField(default=False)
+    vacunado = models.BooleanField
     estado = models.CharField(max_length=20, choices=ESTADOS, default='disponible')
     temperamento = models.CharField(max_length=100)
 
@@ -29,9 +29,13 @@ class UsuarioAdoptante(models.Model):
     preferencia_edad = models.IntegerField(blank=True, null=True)
     preferencia_tamaño = models.CharField(max_length=30, blank=True, null=True)
     historial_adopciones = models.ManyToManyField(Perro, blank=True)
+    peso = models.FloatField(null=True, blank=True)
+    
+
 
     def __str__(self):
         return self.nombre
+    
 from django.utils import timezone
 
 class PostulacionAdopcion(models.Model):
@@ -43,3 +47,4 @@ class PostulacionAdopcion(models.Model):
 
     def __str__(self):
         return f"{self.nombre} postuló por {self.perro.nombre}"
+

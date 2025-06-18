@@ -7,3 +7,7 @@ urlpatterns = [
 ]
 
 path('historial/<str:dni>/', views.historial_adopciones, name='historial_adopciones'),
+
+urlpatterns = [
+    path('probar-gestor/', views.probar_gestor),
+]
