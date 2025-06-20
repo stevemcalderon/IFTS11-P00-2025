@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils import timezone
 
 class Perro(models.Model):
     ESTADOS = [
@@ -36,7 +37,6 @@ class UsuarioAdoptante(models.Model):
     def __str__(self):
         return self.nombre
     
-from django.utils import timezone
 
 class PostulacionAdopcion(models.Model):
     nombre = models.CharField(max_length=100)
